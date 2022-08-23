@@ -29,7 +29,7 @@ interface ListData {
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     defaultViewport: {
       width: 1200,
       height: 800,
@@ -65,6 +65,10 @@ interface ListData {
 
   while (true) {
     let currentPageList: ListData[] = [];
+
+    await page.waitForXPath(
+      '//*[@id="mainContainer"]/div/div[1]/div[3]/div/div[3]/ul'
+    );
 
     const url = page.url();
     const content = await page.content();
@@ -129,6 +133,4 @@ interface ListData {
     folderPath + "/crawling.ts",
     `export const dojagiInfo = ${JSON.stringify(listData.flat(), null, 2)};`
   );
-
-  browser.close();
 })();
