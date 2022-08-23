@@ -115,7 +115,6 @@ interface ListData {
       listData.length !== 0 &&
       listData[listData.length - 1][0].name === currentPageList[0].name
     ) {
-      console.log(listData.length);
       break;
     }
 
