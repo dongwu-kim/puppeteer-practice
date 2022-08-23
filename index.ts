@@ -79,30 +79,20 @@ interface ListData {
     );
 
     list.each((_, list) => {
-      const name = $(list).find(".cafe_name").text();
-      const description = $(list).find(".cafe_introduction").text();
-      let region = "";
-      let member = 0;
-      let profile_link = "";
+      const name = $(list).find(".cafe_name").text() ?? "";
+      const description = $(list).find(".cafe_introduction").text() ?? "";
+      const region = $(list).find(".area_name > .info_data").text() ?? "";
+
       const image_url = $(list).find(".thumbnail").attr("src") ?? "";
       const cafe_link = $(list).find(".thumbnail_area").attr("href") ?? "";
 
-      $(list)
-        .find(".cafe_info_row")
-        ?.each((_, _list) => {
-          if ($(_list).find(".info_title").text() === "멤버수") {
-            member = Number($(_list).find(".info_data").text());
-          }
+      const memberContent = Number(
+        $(list).find(".member_count > .info_data").text()
+      );
+      const member = isNaN(memberContent) ? 0 : memberContent;
 
-          if ($(_list).find(".info_title").text() === "지역") {
-            region = $(_list).find(".info_data").text();
-          }
-
-          const profileContent = $(_list).find(".cafe_profile_link");
-          if (profileContent) {
-            profile_link = profileContent.attr("href") ?? "";
-          }
-        });
+      const profileContent = $(list).find(".cafe_profile_link");
+      const profile_link = profileContent?.attr("href") ?? "";
 
       currentPageList.push({
         name,
