@@ -66,10 +66,6 @@ interface ListData {
   while (true) {
     let currentPageList: ListData[] = [];
 
-    const test = await page.waitForXPath(
-      '//*[@id="mainContainer"]/div/div[1]/div[3]/div/div[3]/ul'
-    );
-
     const url = page.url();
     const content = await page.content();
     const $ = cheerio.load(content);

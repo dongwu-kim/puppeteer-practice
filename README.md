@@ -9,4 +9,4 @@
 
 `yarn && yarn puppeteer`
 
-`screenshot.png` 파일이나, chromium 창을 보면 댑니다. 굿.
+`headless : true` 로 설정하고, chromium 창을 보면 댑니다. 굿.
