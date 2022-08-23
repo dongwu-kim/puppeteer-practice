@@ -133,4 +133,6 @@ interface ListData {
     folderPath + "/crawling.ts",
     `export const dojagiInfo = ${JSON.stringify(listData.flat(), null, 2)};`
   );
+
+  browser.close();
 })();
